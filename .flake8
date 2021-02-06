@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 119
+exclude =
+    */settings/*
+    */migrations/*
+per-file-ignores =
+    */__init__.py:F401
+    */apps.py:F401

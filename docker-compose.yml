@@ -1,0 +1,21 @@
+---
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=bitchange
+      - POSTGRES_USER=bitchange
+      - POSTGRES_PASSWORD=bitchange
+    
+  web:
+    build:
+      context: ./bitchange
+      dockerfile: ./docker/local/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./bitchange:/app
+    depends_on:
+      - db
