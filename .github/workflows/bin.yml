@@ -15,3 +15,18 @@ jobs:
           sudo apt-get install yamllint
       - name: Run yamllint
         run: yamllint .
+
+  shellcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install shellcheck
+      - name: Run shellcheck
+        run: |
+          for file in $(find . -type f -name "*.sh"); do
+            shellcheck --format=gcc $file
+          done
