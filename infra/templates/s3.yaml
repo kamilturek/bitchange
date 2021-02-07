@@ -1,0 +1,11 @@
+---
+Resources:
+  EnvBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: bitchange-env
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
