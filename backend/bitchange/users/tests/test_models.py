@@ -12,6 +12,6 @@ class TestUser:
         user = User.objects.create_user(email, password)
 
         assert user.email == email
-        assert user.password == password
+        assert user.check_password(password) is True
         assert user.is_staff is False
         assert user.is_superuser is False

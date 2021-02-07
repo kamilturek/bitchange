@@ -15,6 +15,8 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save()
 
+        return user
+
     def create_user(self, email: str, password: str, **kwargs: Any) -> 'User':
         kwargs.setdefault('is_staff', False)
         kwargs.setdefault('is_superuser', False)
