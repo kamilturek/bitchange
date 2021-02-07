@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
         kwargs.setdefault('is_superuser', True)
 
         assert kwargs['is_staff'], 'Superuser must have is_staff=True.'
-        assert kwargs['is_superuser'], 'Superuser must have is_superuser=True'
+        assert kwargs['is_superuser'], 'Superuser must have is_superuser=True.'
 
         return self._create_user(email, password, **kwargs)
 
