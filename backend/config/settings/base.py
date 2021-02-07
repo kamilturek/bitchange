@@ -18,8 +18,6 @@ def get_env_variable(var_name):
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = get_env_variable('SECRET_KEY')
-
 ALLOWED_HOSTS = []
 
 FIRST_PARTY_APPS = [

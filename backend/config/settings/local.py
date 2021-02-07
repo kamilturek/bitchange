@@ -2,6 +2,8 @@ from .base import *
 
 DEBUG = True
 
+SECRET_KEY = 'LOCAL_SECRET_KEY'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 DATABASES = {
