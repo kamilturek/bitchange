@@ -1,0 +1,19 @@
+---
+version: '3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=bitchange
+      - POSTGRES_USER=bitchange
+      - POSTGRES_PASSWORD=bitchange
+
+  test_web:
+    build:
+      context: ./backend
+      dockerfile: ./docker/test/Dockerfile
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db

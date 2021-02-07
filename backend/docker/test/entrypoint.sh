@@ -5,4 +5,4 @@ set -o pipefail
 set -o nounset
 
 
-docker-compose run --rm web python manage.py "$@"
+pytest "$@"
