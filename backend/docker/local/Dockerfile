@@ -7,9 +7,6 @@ ENV DJANGO_SETTINGS_MODULE config.settings.local
 COPY ./requirements /requirements
 RUN pip install -r /requirements/base.txt
 
-COPY ./docker/local/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 WORKDIR /app
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
