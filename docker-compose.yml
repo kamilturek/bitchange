@@ -8,7 +8,7 @@ services:
       - POSTGRES_DB=bitchange
       - POSTGRES_USER=bitchange
       - POSTGRES_PASSWORD=bitchange
-    
+
   web:
     build:
       context: ./backend
