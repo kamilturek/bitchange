@@ -11,11 +11,11 @@ services:
     
   web:
     build:
-      context: ./bitchange
+      context: ./backend
       dockerfile: ./docker/local/Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./bitchange:/app
+      - ./backend:/app
     depends_on:
       - db
