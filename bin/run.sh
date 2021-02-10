@@ -8,6 +8,9 @@ ROOT_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
 
 
 case "$1" in
+    sh)
+        docker-compose run --rm web "${@:2}"
+    ;;
     manage)
         docker-compose run --rm web python manage.py "${@:2}"
     ;;
