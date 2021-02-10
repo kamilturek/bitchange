@@ -1,0 +1,16 @@
+---
+name: backend
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run lint tools
+        run: |
+          ./bin/run.sh flake8
+          ./bin/run.sh isort
+          ./bin/run.sh black
