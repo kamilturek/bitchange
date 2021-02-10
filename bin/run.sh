@@ -14,6 +14,15 @@ case "$1" in
     test)
         docker-compose run --rm web pytest "${@:2}"
     ;;
+    flake8)
+        docker-compose run --rm web flake8
+    ;;
+    isort)
+        docker-compose run --rm web isort -c .
+    ;;
+    black)
+        docker-compose run --rm web black --check .
+    ;;
     *)
         echo "ERROR: Unknown operation."  
     ;;
