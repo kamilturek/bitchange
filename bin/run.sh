@@ -4,8 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-ROOT_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
-
 
 case "$1" in
     sh)
