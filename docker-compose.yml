@@ -12,7 +12,7 @@ services:
   web:
     build:
       context: ./backend
-      dockerfile: ./docker/local/Dockerfile
+      dockerfile: ./docker/dev/Dockerfile
     ports:
       - "8000:8000"
     volumes:
