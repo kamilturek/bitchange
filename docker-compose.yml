@@ -19,3 +19,12 @@ services:
       - ./backend:/app
     depends_on:
       - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./docker/dev/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
