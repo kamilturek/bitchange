@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Pane } from 'evergreen-ui';
 
+import Login from './Pages/Login';
 import Navbar from './Components/Navbar';
 import Register from './Pages/Register';
 
@@ -20,7 +21,7 @@ function App() {
             <Route path='/' exact={true}>
               Home Page
             </Route>
-            <Route path='/login'>Login Page</Route>
+            <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
           </Switch>
         </Pane>
