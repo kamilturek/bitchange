@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { Button, TextInputField, Pane, toaster } from 'evergreen-ui';
 import { useForm } from 'react-hook-form';
+import { Button, TextInputField, Pane, toaster } from 'evergreen-ui';
 
 function Register() {
   const { register, getValues, handleSubmit, errors } = useForm();
 
+  // MAYBE EXTRACT THIS EFFECT
   useEffect(() => {
     const TOASTER_TIMEOUT = 200;
 
