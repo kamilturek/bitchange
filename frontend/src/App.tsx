@@ -1,17 +1,30 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Pane } from 'evergreen-ui';
+
+import Navbar from './Components/Navbar';
+import Register from './Pages/Register';
 
 function App() {
   return (
     <Router>
-      <Link to='/'>Home</Link>
-      <Link to='/login'>Login</Link>
-      <Link to='/register'>Register</Link>
+      <Pane width='100%' height='100%' display='flex' flexDirection='column'>
+        <Navbar />
 
-      <Switch>
-        <Route path='/' exact={true}>Home Page</Route>
-        <Route path='/login'>Login Page</Route>
-        <Route path='/register'>Register Page</Route>
-      </Switch>
+        <Pane
+          flex={1}
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+        >
+          <Switch>
+            <Route path='/' exact={true}>
+              Home Page
+            </Route>
+            <Route path='/login'>Login Page</Route>
+            <Route path='/register' component={Register} />
+          </Switch>
+        </Pane>
+      </Pane>
     </Router>
   );
 }
