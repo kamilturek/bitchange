@@ -31,4 +31,4 @@ services:
       - exclude:/app/node_modules/
 
 volumes:
-    exclude:
+  exclude:
