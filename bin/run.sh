@@ -24,6 +24,9 @@ case "$1" in
     black)
         docker-compose run --rm web black --check .
     ;;
+    eslint)
+        docker-compose run --rm frontend yarn run lint . --ext .js,.jsx,.ts,.tsx
+    ;;
     *)
         echo "ERROR: Unknown operation."  
     ;;
