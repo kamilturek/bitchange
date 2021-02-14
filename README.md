@@ -2,4 +2,4 @@
 
 ## Table of Contents
 
-- [Development Guide](docs/DevelopmentGuide)
+- [Development Guide](docs/DevelopmentGuide.md)
