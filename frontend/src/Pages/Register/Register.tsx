@@ -12,7 +12,7 @@ import {
 import { RegisterCredentials } from './types';
 import axios from 'axios';
 
-function Register() {
+const Register: React.FC = () => {
   const [registered, setRegistered] = useState(false);
   const { register, getValues, handleSubmit, errors } = useForm();
 

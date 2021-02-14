@@ -10,7 +10,7 @@ import {
 import { LoginCredentials } from './types';
 import axios from 'axios';
 
-function Login() {
+const Login: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { register, handleSubmit, errors } = useForm();
 

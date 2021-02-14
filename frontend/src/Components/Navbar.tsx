@@ -1,7 +1,7 @@
 import { Button, Pane } from 'evergreen-ui';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+const Navbar: React.FC = () => {
   return (
     <Pane
       display='flex'

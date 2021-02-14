@@ -1,9 +1,10 @@
 import { toaster } from 'evergreen-ui';
+import { RegisterOptions } from 'react-hook-form';
 import { RegisterCredentials } from '../Pages/Register/types';
 
 export const toastValidationErrors = (
   errors: { message: string }[],
-  timeout: number = 200
+  timeout = 200
 ): void => {
   Object.values(errors)
     .reverse()
@@ -13,7 +14,7 @@ export const toastValidationErrors = (
     );
 };
 
-export const emailValidation = () => ({
+export const emailValidation = (): RegisterOptions => ({
   required: 'E-mail is required.',
   pattern: {
     value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -21,14 +22,14 @@ export const emailValidation = () => ({
   },
 });
 
-export const passwordValidation = () => ({
+export const passwordValidation = (): RegisterOptions => ({
   required: 'Password is required.',
 });
 
 export const confirmPasswordValidation = ({
   password1,
   password2,
-}: Partial<RegisterCredentials>) => {
+}: Partial<RegisterCredentials>): RegisterOptions => {
   return {
     ...passwordValidation(),
     validate: () => password1 === password2 || 'Passwords do not match',

@@ -4,7 +4,7 @@ import { Pane } from 'evergreen-ui';
 import Navbar from './Components/Navbar';
 import { Login, Register } from './Pages';
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Pane width='100%' height='100%' display='flex' flexDirection='column'>
