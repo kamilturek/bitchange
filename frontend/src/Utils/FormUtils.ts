@@ -29,9 +29,7 @@ export const passwordValidation = (): RegisterOptions => ({
 export const confirmPasswordValidation = ({
   password1,
   password2,
-}: Partial<RegisterCredentials>): RegisterOptions => {
-  return {
-    ...passwordValidation(),
-    validate: () => password1 === password2 || 'Passwords do not match',
-  };
-};
+}: Partial<RegisterCredentials>): RegisterOptions => ({
+  ...passwordValidation(),
+  validate: () => password1 === password2 || 'Passwords do not match',
+});

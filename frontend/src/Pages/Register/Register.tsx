@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
@@ -10,7 +11,6 @@ import {
   toastValidationErrors,
 } from '../../Utils';
 import { RegisterCredentials } from './types';
-import axios from 'axios';
 
 const Register: React.FC = () => {
   const [registered, setRegistered] = useState(false);
@@ -31,7 +31,7 @@ const Register: React.FC = () => {
   };
 
   if (registered) {
-    return <Redirect to='/login' />;
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -39,37 +39,37 @@ const Register: React.FC = () => {
       <Pane
         elevation={1}
         width={300}
-        background='tint2'
+        background="tint2"
         borderRadius={3}
         padding={15}
-        display='flex'
-        flexDirection='column'
+        display="flex"
+        flexDirection="column"
       >
         <TextInputField
-          width='100%'
-          name='email'
-          placeholder='E-mail'
-          label=''
+          width="100%"
+          name="email"
+          placeholder="E-mail"
+          label=""
           marginBottom={10}
           ref={register(emailValidation())}
           isInvalid={!!errors.email}
         />
         <TextInputField
-          type='password'
-          width='100%'
-          name='password1'
-          placeholder='Password'
-          label=''
+          type="password"
+          width="100%"
+          name="password1"
+          placeholder="Password"
+          label=""
           marginBottom={10}
           ref={register(passwordValidation())}
           isInvalid={!!errors.password1}
         />
         <TextInputField
-          type='password'
-          width='100%'
-          name='password2'
-          label=''
-          placeholder='Confirm password'
+          type="password"
+          width="100%"
+          name="password2"
+          label=""
+          placeholder="Confirm password"
           marginBottom={10}
           ref={register(
             confirmPasswordValidation({
@@ -79,12 +79,12 @@ const Register: React.FC = () => {
           )}
           isInvalid={!!errors.password2}
         />
-        <Button appearance='primary' width='100%' justifyContent='center'>
+        <Button appearance="primary" width="100%" justifyContent="center">
           Register
         </Button>
       </Pane>
     </form>
   );
-}
+};
 
 export default Register;

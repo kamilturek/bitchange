@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
@@ -8,7 +9,6 @@ import {
   toastValidationErrors,
 } from '../../Utils';
 import { LoginCredentials } from './types';
-import axios from 'axios';
 
 const Login: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
   };
 
   if (loggedIn) {
-    return <Redirect to='/' />;
+    return <Redirect to="/" />;
   }
 
   return (
@@ -36,35 +36,35 @@ const Login: React.FC = () => {
       <Pane
         elevation={1}
         width={300}
-        background='tint2'
+        background="tint2"
         borderRadius={3}
         padding={15}
-        display='flex'
-        flexDirection='column'
+        display="flex"
+        flexDirection="column"
       >
         <TextInputField
-          placeholder='E-mail'
-          name='email'
-          width='100%'
-          label=''
+          placeholder="E-mail"
+          name="email"
+          width="100%"
+          label=""
           marginBottom={10}
           ref={register(emailValidation())}
         />
         <TextInputField
-          placeholder='Password'
-          name='password'
-          type='password'
-          label=''
-          width='100%'
+          placeholder="Password"
+          name="password"
+          type="password"
+          label=""
+          width="100%"
           marginBottom={10}
           ref={register(passwordValidation())}
         />
-        <Button appearance='primary' width='100%' justifyContent='center'>
+        <Button appearance="primary" width="100%" justifyContent="center">
           Login
         </Button>
       </Pane>
     </form>
   );
-}
+};
 
 export default Login;

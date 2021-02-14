@@ -1,6 +1,6 @@
 import { toaster } from 'evergreen-ui';
 
-export const toastHTTPErrors = (
+const toastHTTPErrors = (
   errors: { [field: string]: string[] },
   timeout = 200
 ): void => {
@@ -8,3 +8,5 @@ export const toastHTTPErrors = (
     .flat()
     .forEach((error) => setTimeout(() => toaster.danger(error), timeout));
 };
+
+export default toastHTTPErrors;
