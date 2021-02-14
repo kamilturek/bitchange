@@ -2,5 +2,6 @@ export {
   confirmPasswordValidation,
   emailValidation,
   passwordValidation,
-  toastErrors,
+  toastValidationErrors,
 } from './FormUtils';
+export { toastHTTPErrors } from './HTTPUtils';

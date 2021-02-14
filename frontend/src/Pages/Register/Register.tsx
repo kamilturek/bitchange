@@ -1,23 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, TextInputField, Pane } from 'evergreen-ui';
+import { Redirect } from 'react-router-dom';
+import { Button, TextInputField, Pane, toaster } from 'evergreen-ui';
 import {
   confirmPasswordValidation,
   emailValidation,
   passwordValidation,
-  toastErrors,
-} from '../Utils';
+  toastHTTPErrors,
+  toastValidationErrors,
+} from '../../Utils';
+import { RegisterCredentials } from './types';
+import axios from 'axios';
 
 function Register() {
+  const [registered, setRegistered] = useState(false);
   const { register, getValues, handleSubmit, errors } = useForm();
 
   useEffect(() => {
-    toastErrors(errors as { message: string }[]);
+    toastValidationErrors(errors as { message: string }[]);
   }, [errors]);
 
-  const onSubmit = (value: any) => {
-    console.log('xxx', value);
+  const onSubmit = (credentials: RegisterCredentials) => {
+    axios
+      .post('http://localhost:8000/api/auth/registration/', credentials)
+      .then(() => {
+        toaster.success('Registered successfully.');
+        setRegistered(true);
+      })
+      .catch((error) => toastHTTPErrors(error.response.data));
   };
+
+  if (registered) {
+    return <Redirect to='/login' />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
