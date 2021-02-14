@@ -1,29 +1,22 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, TextInputField, Pane, toaster } from 'evergreen-ui';
+import { Button, TextInputField, Pane } from 'evergreen-ui';
+import {
+  confirmPasswordValidation,
+  emailValidation,
+  passwordValidation,
+  toastErrors,
+} from '../Utils';
 
 function Register() {
   const { register, getValues, handleSubmit, errors } = useForm();
 
-  // MAYBE EXTRACT THIS EFFECT
   useEffect(() => {
-    const TOASTER_TIMEOUT = 200;
-
-    Object.values(errors as { message: string }[])
-      .reverse()
-      .map((error) => error.message)
-      .forEach((error) =>
-        setTimeout(() => toaster.danger(error, { id: error }), TOASTER_TIMEOUT)
-      );
+    toastErrors(errors as { message: string }[]);
   }, [errors]);
 
   const onSubmit = (value: any) => {
     console.log('xxx', value);
-  };
-
-  const validatePasswords = (): boolean | string => {
-    const { password1, password2 } = getValues(['password1', 'password2']);
-    return password1 === password2 || 'Passwords do not match.';
   };
 
   return (
@@ -43,13 +36,7 @@ function Register() {
           placeholder='E-mail'
           label=''
           marginBottom={10}
-          ref={register({
-            required: 'E-mail is required.',
-            pattern: {
-              value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-              message: 'E-mail is not valid.',
-            },
-          })}
+          ref={register(emailValidation())}
           isInvalid={!!errors.email}
         />
         <TextInputField
@@ -59,7 +46,7 @@ function Register() {
           placeholder='Password'
           label=''
           marginBottom={10}
-          ref={register({ required: 'Password is required.' })}
+          ref={register(passwordValidation())}
           isInvalid={!!errors.password1}
         />
         <TextInputField
@@ -69,10 +56,12 @@ function Register() {
           label=''
           placeholder='Confirm password'
           marginBottom={10}
-          ref={register({
-            required: 'Password is required.',
-            validate: validatePasswords,
-          })}
+          ref={register(
+            confirmPasswordValidation({
+              password1: getValues('password1'),
+              password2: getValues('password2'),
+            })
+          )}
           isInvalid={!!errors.password2}
         />
         <Button appearance='primary' width='100%' justifyContent='center'>

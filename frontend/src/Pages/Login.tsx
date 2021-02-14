@@ -1,25 +1,18 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, TextInputField, Pane, toaster } from 'evergreen-ui';
+import { Button, TextInputField, Pane } from 'evergreen-ui';
+import { emailValidation, passwordValidation, toastErrors } from '../Utils';
 
 function Login() {
   const { register, handleSubmit, errors } = useForm();
 
-    // MAYBE EXTRACT THIS EFFECT
-    useEffect(() => {
-      const TOASTER_TIMEOUT = 200;
-  
-      Object.values(errors as { message: string }[])
-        .reverse()
-        .map((error) => error.message)
-        .forEach((error) =>
-          setTimeout(() => toaster.danger(error, { id: error }), TOASTER_TIMEOUT)
-        );
-    }, [errors]);
+  useEffect(() => {
+    toastErrors(errors as { message: string }[]);
+  }, [errors]);
 
   const onSubmit = (value: any) => {
     console.log(value);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -38,13 +31,7 @@ function Login() {
           width='100%'
           label=''
           marginBottom={10}
-          ref={register({
-            required: 'E-mail is required.',
-            pattern: {
-              value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-              message: 'E-mail is not valid.',
-            },
-          })}
+          ref={register(emailValidation())}
         />
         <TextInputField
           placeholder='Password'
@@ -53,9 +40,7 @@ function Login() {
           label=''
           width='100%'
           marginBottom={10}
-          ref={register({
-            required: 'Password is required.'
-          })}
+          ref={register(passwordValidation())}
         />
         <Button appearance='primary' width='100%' justifyContent='center'>
           Login
