@@ -1,7 +1,6 @@
 import { toaster } from 'evergreen-ui';
-import { RegisterCredentials } from '../Pages/Register/types';
 
-export const toastValidationErrors = (
+export const toastErrors = (
   errors: { message: string }[],
   timeout: number = 200
 ): void => {
@@ -28,7 +27,9 @@ export const passwordValidation = () => ({
 export const confirmPasswordValidation = ({
   password1,
   password2,
-}: Partial<RegisterCredentials>) => {
+}: {
+  [x: string]: string;
+}) => {
   return {
     ...passwordValidation(),
     validate: () => password1 === password2 || 'Passwords do not match',

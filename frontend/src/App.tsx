@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Pane } from 'evergreen-ui';
 
+import Login from './Pages/Login';
 import Navbar from './Components/Navbar';
-import { Login, Register } from './Pages';
+import Register from './Pages/Register';
 
 function App() {
   return (
