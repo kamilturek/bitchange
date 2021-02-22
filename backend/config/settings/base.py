@@ -93,3 +93,16 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+COGNITO_AWS_REGION = get_env_variable('COGNITO_AWS_REGION')
+COGNITO_USER_POOL = get_env_variable('COGNITO_USER_POOL')
+COGNITO_AUDIENCE = get_env_variable('COGNITO_AUDIENCE')
+COGNITO_USER_MODEL = 'users.User'
+
+AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'django_cognito_jwt.JSONWebTokenAuthentication',
+    ],
+}
