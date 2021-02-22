@@ -1,2 +1,2 @@
-from .uuid import UUIDModel
 from .timestamped import TimeStampedModel
+from .uuid import UUIDModel
