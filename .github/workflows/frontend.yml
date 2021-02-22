@@ -10,4 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run ESLint
-        run: ./bin/run.sh eslint
+        run: |
+          touch .env.dev
+          ./bin/run.sh eslint
