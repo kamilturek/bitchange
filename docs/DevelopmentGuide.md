@@ -4,7 +4,7 @@
 
 Downloading environment files
 
-```
+```bash
 ./bin/init.py
 ```
 
