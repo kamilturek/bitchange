@@ -12,5 +12,6 @@ resource "aws_cognito_user_pool" "user_pool" {
 }
 
 output "user_pool_id" {
-  value = aws_cognito_user_pool.user_pool.id
+  value     = aws_cognito_user_pool.user_pool.id
+  sensitive = true
 }
