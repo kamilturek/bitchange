@@ -1,5 +1,13 @@
 # Development Guide
 
+## Common
+
+Downloading environment files
+
+```bash
+./bin/init.py
+```
+
 ## Backend
 
 Running backend server

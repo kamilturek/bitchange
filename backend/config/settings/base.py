@@ -31,15 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ] + FIRST_PARTY_APPS
 
 MIDDLEWARE = [
@@ -101,11 +94,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Auth Settings
+COGNITO_AWS_REGION = get_env_variable('COGNITO_AWS_REGION')
+COGNITO_USER_POOL = get_env_variable('COGNITO_USER_POOL')
+COGNITO_AUDIENCE = get_env_variable('COGNITO_AUDIENCE')
+COGNITO_USER_MODEL = 'users.User'
+
 AUTH_USER_MODEL = 'users.User'
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = None
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'django_cognito_jwt.JSONWebTokenAuthentication',
+    ],
+}
