@@ -3,7 +3,8 @@ resource "aws_s3_bucket" "env_bucket" {
 }
 
 resource "aws_s3_bucket_public_access_block" "env_bucket" {
-  bucket                  = aws_s3_bucket.env_bucket.id
+  bucket = aws_s3_bucket.env_bucket.id
+
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true

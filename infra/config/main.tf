@@ -11,7 +11,8 @@ provider "aws" {
 }
 
 module "budgets" {
-  source                     = "./budgets"
+  source = "./budgets"
+
   subscriber_email_addresses = var.subscriber_email_addresses
 }
 
@@ -21,9 +22,4 @@ module "cognito" {
 
 module "s3" {
   source = "./s3"
-}
-
-output "user_pool_id" {
-  value     = module.cognito.user_pool_id
-  sensitive = true
 }

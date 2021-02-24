@@ -1,5 +1,6 @@
 resource "aws_budgets_budget" "budget" {
-  name              = "bitchange-budget"
+  name = "bitchange-budget"
+
   budget_type       = "COST"
   limit_amount      = "1.0"
   limit_unit        = "USD"
