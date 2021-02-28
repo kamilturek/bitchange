@@ -7,7 +7,7 @@ import {
   emailValidation,
   passwordValidation,
   toastValidationErrors,
-} from '../../Utils';
+} from '../../utils';
 import { IRegisterCredentials } from './types';
 import UserPool from '../../UserPool';
 

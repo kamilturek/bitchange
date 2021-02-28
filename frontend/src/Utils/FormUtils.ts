@@ -1,6 +1,6 @@
 import { toaster } from 'evergreen-ui';
 import { RegisterOptions } from 'react-hook-form';
-import { IRegisterCredentials } from '../Pages/Register/types';
+import { IRegisterCredentials } from '../pages/Register/types';
 
 export const toastValidationErrors = (
   errors: { message: string }[],

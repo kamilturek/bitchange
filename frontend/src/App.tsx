@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Pane } from 'evergreen-ui';
 
-import Navbar from './Components/Navbar';
-import { Login, Register } from './Pages';
+import Navbar from './components/Navbar';
+import { Login, Register } from './pages';
 import { UserProvider } from './contexts/User';
 
 const App: React.FC = () => (

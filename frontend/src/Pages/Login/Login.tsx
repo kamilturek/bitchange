@@ -6,7 +6,7 @@ import {
   emailValidation,
   passwordValidation,
   toastValidationErrors,
-} from '../../Utils';
+} from '../../utils';
 import { useUser } from '../../contexts/User';
 
 const Login: React.FC = () => {
