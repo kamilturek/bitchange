@@ -1,4 +1,4 @@
-export interface RegisterCredentials {
+export interface IRegisterCredentials {
   email: string;
   password1: string;
   password2: string;

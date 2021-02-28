@@ -10,7 +10,7 @@ import {
   toastHTTPErrors,
   toastValidationErrors,
 } from '../../Utils';
-import { RegisterCredentials } from './types';
+import { IRegisterCredentials } from './types';
 
 const Register: React.FC = () => {
   const [registered, setRegistered] = useState(false);
@@ -20,7 +20,7 @@ const Register: React.FC = () => {
     toastValidationErrors(errors as { message: string }[]);
   }, [errors]);
 
-  const onSubmit = (credentials: RegisterCredentials) => {
+  const onSubmit = (credentials: IRegisterCredentials) => {
     axios
       .post('http://localhost:8000/api/auth/registration/', credentials)
       .then(() => {
