@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
@@ -7,10 +6,10 @@ import {
   confirmPasswordValidation,
   emailValidation,
   passwordValidation,
-  toastHTTPErrors,
   toastValidationErrors,
 } from '../../Utils';
 import { IRegisterCredentials } from './types';
+import UserPool from '../../UserPool';
 
 const Register: React.FC = () => {
   const [registered, setRegistered] = useState(false);
@@ -21,13 +20,16 @@ const Register: React.FC = () => {
   }, [errors]);
 
   const onSubmit = (credentials: IRegisterCredentials) => {
-    axios
-      .post('http://localhost:8000/api/auth/registration/', credentials)
-      .then(() => {
-        toaster.success('Registered successfully.');
+    UserPool.signUp(credentials.email, credentials.password1, [], [], (err) => {
+      if (err) {
+        toaster.danger(err.message);
+      } else {
+        toaster.success('Registered successfully.', {
+          description: 'Please verify your e-mail before logging in.',
+        });
         setRegistered(true);
-      })
-      .catch((error) => toastHTTPErrors(error.response.data));
+      }
+    });
   };
 
   if (registered) {
