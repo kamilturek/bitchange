@@ -10,6 +10,11 @@ resource "aws_cognito_user_pool" "pool" {
       priority = 1
     }
   }
+
+  verification_message_template {
+    default_email_option  = "CONFIRM_WITH_LINK"
+    email_subject_by_link = "BitChange: Your confirmation link"
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
@@ -20,7 +25,7 @@ resource "aws_cognito_user_pool_client" "client" {
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes                 = ["email", "openid"]
   callback_urls                        = ["http://localhost:3000/"]
-  explicit_auth_flows                  = ["ALLOW_REFRESH_TOKEN_AUTH"]
+  explicit_auth_flows                  = ["ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH"]
   supported_identity_providers         = ["COGNITO"]
 }
 
