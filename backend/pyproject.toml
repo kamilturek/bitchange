@@ -10,6 +10,7 @@ exclude = """
 name = "backend"
 version = "0.1.0"
 description = ""
+authors = ["Kamil Turek <kamil.turek@hotmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
