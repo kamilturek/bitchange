@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=config.settings.dev \
     POETRY_VERSION=1.1.4
 
-COPY ./pyproject.toml ./poetry.lock ./
+COPY ./pyproject.toml ./
 
 RUN pip install "poetry==$POETRY_VERSION"
 RUN poetry config virtualenvs.create false
