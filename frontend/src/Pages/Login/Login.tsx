@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
@@ -7,24 +6,25 @@ import {
   emailValidation,
   passwordValidation,
   toastValidationErrors,
-} from '../../Utils';
-import { LoginCredentials } from './types';
+} from '../../utils';
+import { useUser } from '../../contexts/User';
 
 const Login: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const { authenticate } = useUser();
   const { register, handleSubmit, errors } = useForm();
 
   useEffect(() => {
     toastValidationErrors(errors as { message: string }[]);
   }, [errors]);
 
-  const onSubmit = (credentials: LoginCredentials) => {
-    axios
-      .post('http://localhost:8000/api/auth/login/', credentials)
-      .then(() => {
+  const onSubmit = (credentials: { email: string; password: string }) => {
+    authenticate(credentials.email, credentials.password)
+      .then((data) => {
         toaster.success('Logged in successfully.');
         setLoggedIn(true);
-      });
+      })
+      .catch((err: { message: string }) => toaster.danger(err.message));
   };
 
   if (loggedIn) {

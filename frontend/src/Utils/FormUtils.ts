@@ -1,6 +1,6 @@
 import { toaster } from 'evergreen-ui';
 import { RegisterOptions } from 'react-hook-form';
-import { RegisterCredentials } from '../Pages/Register/types';
+import { IRegisterCredentials } from '../pages/Register/types';
 
 export const toastValidationErrors = (
   errors: { message: string }[],
@@ -29,7 +29,7 @@ export const passwordValidation = (): RegisterOptions => ({
 export const confirmPasswordValidation = ({
   password1,
   password2,
-}: Partial<RegisterCredentials>): RegisterOptions => ({
+}: Partial<IRegisterCredentials>): RegisterOptions => ({
   ...passwordValidation(),
   validate: () => password1 === password2 || 'Passwords do not match',
 });

@@ -4,4 +4,4 @@ export {
   passwordValidation,
   toastValidationErrors,
 } from './FormUtils';
-export { toastHTTPErrors } from './HTTPUtils';
+export { default as toastHTTPErrors } from './HTTPUtils';
