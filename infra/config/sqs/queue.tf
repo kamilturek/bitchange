@@ -24,6 +24,7 @@ resource "aws_sqs_queue_policy" "queue_policy" {
       "Action": [
         "SQS:ChangeMessageVisibility",
         "SQS:DeleteMessage",
+        "SQS:GetQueueAttributes",
         "SQS:ReceiveMessage",
         "SQS:SendMessage"
       ],
