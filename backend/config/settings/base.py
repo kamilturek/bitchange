@@ -94,15 +94,33 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-COGNITO_AWS_REGION = get_env_variable('COGNITO_AWS_REGION')
+AWS_REGION = get_env_variable('AWS_REGION')
+
+COGNITO_AWS_REGION = AWS_REGION
 COGNITO_USER_POOL = get_env_variable('COGNITO_USER_POOL')
 COGNITO_AUDIENCE = get_env_variable('COGNITO_AUDIENCE')
 COGNITO_USER_MODEL = 'users.User'
-
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'django_cognito_jwt.JSONWebTokenAuthentication',
     ],
+}
+
+SQS_AWS_REGION = AWS_REGION
+SQS_URL = get_env_variable('SQS_URL')
+SQS_USER_ACCESS_KEY_ID = get_env_variable('SQS_USER_ACCESS_KEY_ID')
+SQS_USER_SECRET_ACCESS_KEY = get_env_variable('SQS_USER_SECRET_ACCESS_KEY')
+
+CELERY_BROKER_URL = f'sqs://{SQS_USER_ACCESS_KEY_ID}:{SQS_USER_SECRET_ACCESS_KEY}@'
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'region': SQS_AWS_REGION,
+    'predefined_queues': {
+        'celery': {
+            'url': SQS_URL,
+            'access_key_id': SQS_USER_ACCESS_KEY_ID,
+            'secret_access_key': SQS_USER_SECRET_ACCESS_KEY,
+        },
+    },
 }
