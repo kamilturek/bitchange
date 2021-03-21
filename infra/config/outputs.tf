@@ -1,3 +1,8 @@
+output "queue_id" {
+  value     = module.sqs.queue_id
+  sensitive = true
+}
+
 output "queue_user_id" {
   value     = module.iam.queue_user_id
   sensitive = true

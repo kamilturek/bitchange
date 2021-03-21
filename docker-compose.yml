@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=bitchange
       - POSTGRES_PASSWORD=bitchange
 
-  web:
+  web: &web
     build:
       context: ./backend
       dockerfile: ./docker/dev/Dockerfile
@@ -21,6 +21,18 @@ services:
       - .env.dev
     depends_on:
       - db
+
+  celeryworker:
+    <<: *web
+    image: bitchange_web
+    ports: []
+    entrypoint: ./docker/celery_worker_entrypoint.sh
+
+  celerybeat:
+    <<: *web
+    image: bitchange_web
+    ports: []
+    entrypoint: ./docker/celery_beat_entrypoint.sh
 
   frontend:
     build:
